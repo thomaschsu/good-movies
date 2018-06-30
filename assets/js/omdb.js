@@ -6,12 +6,12 @@ var recommended_movies = [];
 hide_all_posters();
 
 // Add our api_keys here
-var houssam_omdb_api_key = "e4169616";
-var tom_omdb_api_key = "d546d0cf";
-var jeff_omdb_api_key = "8b309cfb";
+var tom2_omdb_api_key = "a87ebc7c";
+var tom_omdb_api_key = "8506adc6";
+var tom3_omdb_api_key = "e81ddc9";
 
 // Create an array of our 3 keys. Cycle through them so we don't run out of requests.
-var omdb_api_keys = [houssam_omdb_api_key, tom_omdb_api_key, jeff_omdb_api_key];
+var omdb_api_keys = [tom2_omdb_api_key, tom_omdb_api_key, tom3_omdb_api_key];
 var current_omdb_api_key = 0;
 
 // This call for test purposes only. get_movie_list() should be called from front_end
@@ -35,7 +35,7 @@ function get_rec_movies(rotten_tomato_min_value, genre, year, limit) {
         // Cycle round-robin through api_keys
         current_omdb_api_key = (current_omdb_api_key + 1) % omdb_api_keys.length;
 
-        var queryURL = "https://www.omdbapi.com/"
+        var queryURL = "http://www.omdbapi.com/"
                         + "?apikey=" + omdb_api_keys[current_omdb_api_key]
                         + "&t=" + all_movies[m].title
                         + "&y=" + year;
