@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Goodmovies - Find a good movie to watch</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+    crossorigin="anonymous">
+  <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+</head>
+
+<body>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light">
+    <div id="navbar-container" class="container">
+      <span class="navbar-brand m0 h1 text-white font-weight-light">good<b>movies</b>
+      </span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active font-weight-light">
+            <a class="nav-link text-white mx-2" href="favorites.html">
+              <i class="fas fa-heart"></i> Favorites</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#">
+              <i class="fas fa-award"></i> Recommendations
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white mx-2" href="index.html">
+              <i class="fas fa-book"></i> Sign In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="body-container">
+    <div class="footer-fix">
+      <div id="main-container" class="container bg-light border mt-5 pb-3">
+        <div class="row">
+          <div class="col-sm-3 pt-4">
+            <span class="py-4 display-4">Filter</span>
+            <br>
+            <br>
+            <span class="py-4 nav-item">Rotten Tomatoes Score</span>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="rating" id="rt1" value="rt1" checked>
+              <label class="form-check-label" for="rt1">
+                >90%
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="rating" id="rt2" value="rt2">
+              <label class="form-check-label" for="rt2">
+                >80%
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="rating" id="rt3" value="rt3">
+              <label class="form-check-label" for="rt3">
+                >70%
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="rating" id="rt4" value="rt4">
+              <label class="form-check-label" for="rt4">
+                >60%
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="rating" id="rt5" value="rt5">
+              <label class="form-check-label" for="rt5">
+                >50%
+              </label>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Release Year</label>
+              <select class="form-control" id="releaseyear">
+                <option>2018</option>
+                <option>2017</option>
+                <option>2016</option>
+                <option>2015</option>
+                <option>2014</option>
+                <option>2013</option>
+                <option>2012</option>
+                <option>2011</option>
+                <option>2010</option>
+                <option>2009</option>
+                <option>2008</option>
+                <option>2007</option>
+                <option>2006</option>
+                <option>2005</option>
+                <option>2004</option>
+                <option>2003</option>
+                <option>2002</option>
+                <option>2001</option>
+                <option>2000</option>
+              </select>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="action" id="action" checked> Action
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="adventure" id="adventure"> Adventure
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="animation" id="animation"> Animation
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="comedy" id="comedy"> Comedy
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="crime" id="crime"> Crime
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="documentary" id="documentary"> Documentary
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="drama" id="drama"> Drama
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="family" id="family"> Family
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="fantasy" id="fantasy"> Fantasy
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="history" id="history"> History
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="horror" id="horror"> Horror
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="music" id="music"> Music
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="mystery" id="mystery"> Mystery
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="romance" id="romance"> Romance
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="sciencefiction" id="sciencefiction"> Science Fiction
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="thriller" id="thriller"> Thriller
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="war" id="war"> War
+              </label>
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="western" id="western"> Western
+              </label>
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Limit Search Result</label>
+              <select class="form-control" id="limitsearch">
+                <option>16</option>
+                <option>12</option>
+                <option>8</option>
+                <option>4</option>
+              </select>
+            </div>
+            <button id="submit-button" type="submit" class="btn submit-button">
+              <i class="fas fa-search"></i> Filter</button>
+          </div>
+          <div class="col-sm-9">
+            <h4 class="border-bottom py-4 display-4">Recommendations</h4>
+            <div id="instructions">Use the filter on the left to search for movies.</div>
+            <table class="my-3">
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie1" class="poster" href="#">
+                        <a id="add-to-favs1" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal1" href="#movieModal1" rel="#movieModal1" data-toggle="modal" data-ref="1" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img1" src="assets/images/movie1.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title1" class="text-center py-2">The Matrix</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal1" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body1" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie2" class="poster" href="#">
+                        <a id="add-to-favs2" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites</a>
+                        <a id="go-to-modal2" href="#movieModal2" rel="#movieModal2" data-toggle="modal" data-ref="2" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More</a>
+                        <img id="img2" src="assets/images/movie2.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title2" class="text-center py-2">The Notebook</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal2" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body2" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie3" class="poster" href="#">
+                        <a id="add-to-favs3" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal3" href="#movieModal3" rel="#movieModal3" data-toggle="modal" data-ref="3" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img3" src="assets/images/movie3.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title3" class="text-center py-2">Mr. Nobody</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal3" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body3" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie4" class="poster" href="#">
+                        <a id="add-to-favs4" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal4" href="#movieModal4" rel="#movieModal4" data-toggle="modal" data-ref="4" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img4" src="assets/images/movie4.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title4" class="text-center py-2">The Lion King</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal4" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body4" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie5" class="poster" href="#">
+                        <a id="add-to-favs5" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal5" href="#movieModal5" rel="#movieModal5" data-toggle="modal" data-ref="5" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img5" src="assets/images/movie1.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title5" class="text-center py-2">The Matrix</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal5" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body5" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie6" class="poster" href="#">
+                        <a id="add-to-favs6" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal6" href="#movieModal6" rel="#movieModal6" data-toggle="modal" data-ref="6" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                          </a>
+                        <img id="img6" src="assets/images/movie2.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title6" class="text-center py-2">The Notebook</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal6" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body6" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie7" class="poster" href="#">
+                        <a id="add-to-favs7" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal7" href="#movieModal7" rel="#movieModal7" data-toggle="modal" data-ref="7" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img7" src="assets/images/movie3.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title7" class="text-center py-2">Mr. Nobody</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal7" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body7" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie8" class="poster" href="#">
+                        <a id="add-to-favs8" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal8" href="#movieModal8" rel="#movieModal8" data-toggle="modal" data-ref="8" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img8" src="assets/images/movie4.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title8" class="text-center py-2">The Lion King</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal8" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body8" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie9" class="poster" href="#">
+                        <a id="add-to-favs9" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal9" href="#movieModal9" rel="#movieModal9" data-toggle="modal" data-ref="9" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img9" src="assets/images/movie1.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title9" class="text-center py-2">The Matrix</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal9" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body9" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie10" class="poster" href="#">
+                        <a id="add-to-favs10" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal10" href="#movieModal10" rel="#movieModal10" data-toggle="modal" data-ref="10" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img10" src="assets/images/movie2.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title10" class="text-center py-2">The Notebook</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal10" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body10" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie11" class="poster" href="#">
+                        <a id="add-to-favs11" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal11" href="#movieModal11" rel="#movieModal11" data-toggle="modal" data-ref="11" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img11" src="assets/images/movie3.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title11" class="text-center py-2">Mr. Nobody</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal11" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body11" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie12" class="poster" href="#">
+                        <a id="add-to-favs12" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal12" href="#movieModal12" rel="#movieModal12" data-toggle="modal" data-ref="12" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img12" src="assets/images/movie4.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title12" class="text-center py-2">The Lion King</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal12" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body12" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie13" class="poster" href="#">
+                        <a id="add-to-favs13" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal13" href="#movieModal13" rel="#movieModal13" data-toggle="modal" data-ref="13" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img13" src="assets/images/movie1.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title13" class="text-center py-2">The Matrix</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal13" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body13" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie14" class="poster" href="#">
+                        <a id="add-to-favs14" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal14" href="#movieModal14" rel="#movieModal14" data-toggle="modal" data-ref="14" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img14" src="assets/images/movie2.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title14" class="text-center py-2">The Notebook</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal14" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body14" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie15" class="poster" href="#">
+                        <a id="add-to-favs15" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites<
+                            /a>
+                        <a id="go-to-modal15" href="#movieModal15" rel="#movieModal15" data-toggle="modal" data-ref="15" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img15" src="assets/images/movie3.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title15" class="text-center py-2">Mr. Nobody</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal15" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body15" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center position-relative portfolio">
+                      <a id="movie16" class="poster" href="#">
+                        <a id="add-to-favs16" class="text-center position-absolute w-75 py-2 favorites text-shadow" href="#">
+                          <i class="fas fa-star"></i> Add to Favorites
+                        </a>
+                        <a id="go-to-modal16" href="#movieModal16" rel="#movieModal16" data-toggle="modal" data-ref="16" class="go-to-modal text-center position-absolute w-50 view-movie text-shadow">
+                          <i class="fas fa-expand"></i> Read More
+                        </a>
+                        <img id="img16" src="assets/images/movie4.jpg" class="img-fluid w-75 my-2" alt="port1">
+                        <div id="title16" class="text-center py-2">The Lion King</div>
+                      </a>
+                    </div>
+                    <div class="modal" id="movieModal16" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="movieModalLabel">Movie Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div id="modal-body16" class="modal-body"></div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer py-5 mt-5">
+      <div class="container text-center">
+        <span class="text-white small text-center text-uppercase">Copyright &copy; goodmovies Inc</span>
+      </div>
+    </footer>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="assets/js/tmdb.js"></script>
+  <script src="assets/js/omdb.js"></script>
+  <!-- Must be after tmdb.js -->
+  <script src="assets/js/script.js"></script>
+  <!-- <script src="assets/js/signin.js"></script> -->
+  <script src="assets/js/fav.js"></script>
+</body>
+
+</html>

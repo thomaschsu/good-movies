@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+        <link rel="stylesheet" href="style1.css">
+        <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+        <title>Firebase Login</title>
+    </head>
+<body>
+
+    <div id="login_div" class="main-div">
+        <h3>Firebase Web Login</h3>
+        <input type="email" placeholder="Email..." id="email_field"/>
+        <input type="password" placeholder="Password..." id="password_field"/>
+
+        <button onclick="login()">Login to Account</button>
+    </div>
+
+    <div id="user_div" class="loggedin-div">
+        <h3>Welcome User</h3>
+        <p>Welcome to firebase login example.  You are currently logged in</p>
+        <button>Logout</button>
+    </div>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCnBB7K1x-2rGzwngazfbBY4K7vCfjQuzE",
+    authDomain: "group-5-project-1.firebaseapp.com",
+    databaseURL: "https://group-5-project-1.firebaseio.com",
+    projectId: "group-5-project-1",
+    storageBucket: "group-5-project-1.appspot.com",
+    messagingSenderId: "522365895035"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script src="assets/js/emailsignin.js"></script>
+
+</body>
+</html>

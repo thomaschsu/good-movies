@@ -1,0 +1,93 @@
+.navbar {
+    background-color: #01579B;
+    webkit-box-shadow: 0 5px 5px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,0.15);
+}
+.navbar-collapse.collapse.in {
+    display: block!important;
+}
+.img-banner {
+    background-color: #2196F3;
+}
+.submit-button {
+    background-color: #00C853;
+    color: #FFF;
+}
+.navbar-brand {
+    font-size: 25px;
+}
+p {
+    line-height: 2;
+}
+.footer-fix {
+    min-height: calc(80vh - 70px);
+}
+.footer {
+    background-color: #263238;
+}
+.favorites {
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    color: #FFEA00;
+    font-weight: 700;
+}
+.movie-hide {
+    bottom: 10%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #FF1744;
+    font-weight: 700;
+}
+.portfolio:hover {
+    opacity:0.75;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+}
+.body-container {
+    display: table;
+    width: 100%;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+}
+.jumbotron {
+    background-image: url("../images/wallpaper.jpg");
+    background-position: 5%;
+}
+.text-shadow {
+    text-shadow: 1px 1px #000;
+}
+.table thead th {
+    border: none;
+}
+.modal {
+    background-color: #7f7f7f;
+}
+.view-movie {
+    bottom: 15.9%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #00E676;
+    font-weight: 700;
+}
+iframe {
+    -moz-transform: scale(0.85, 0.85); 
+    -webkit-transform: scale(0.85, 0.85); 
+    -o-transform: scale(0.85, 0.85);
+    -ms-transform: scale(0.85, 0.85);
+    transform: scale(0.85, 0.85); 
+    -moz-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+  }
+  .btn-secondary {
+    background-color: #E53935;
+  }
+  #instructions {
+    font-size: 20px;
+    margin: 15px 0;
+}
