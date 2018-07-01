@@ -102,3 +102,7 @@ iframe {
     left:0;
     z-index:1;
 }
+video {
+    width: 100%;
+    height: auto;
+}
