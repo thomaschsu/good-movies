@@ -9,7 +9,7 @@
       <script src=https://www.gstatic.com/firebasejs/5.0.0/firebase-app.js></script> 
       <script src=https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js></script> 
       <script src=https://www.gstatic.com/firebasejs/5.0.0/firebase-database.js></script> 
-    </head>
+   </head>
    <body>
       <nav class="navbar sticky-top navbar-expand-lg navbar-light">
          <div id="navbar-container" class="container">
@@ -34,10 +34,17 @@
       </nav>
       <div class="body-container">
          <div class="footer-fix">
-            <div class="jumbotron">
-               <h1 class="display-4 text-white text-shadow">Meet your next favorite movie.</h1>
-               <br><br>
-               <p class="text-white text-shadow">You’re in the right place. Search for your next movie using our extensive filtering system integrated with the most popular review aggregators.</p>
+            <div class="container-banner">
+               <video id="video" autoplay="autoplay">
+                  <source src="assets/video/video.mp4" type="video/mp4"/>
+               </video>
+               <div class="overlay-banner">
+                  <br><br>
+                  <br><br>
+                  <h1 class="display-4 text-white text-shadow">Meet your next favorite movie.</h1>
+                  <br><br>
+                  <p class="text-white text-shadow">You’re in the right place. Search for your next movie using our extensive filtering system integrated with the most popular review aggregators.</p>
+               </div>
             </div>
             <div id="main-container" class="container bg-light border mt-5 pb-3">
                <div class="row">
@@ -69,17 +76,17 @@
                <div class="col-md-12">
                   <p class="font-italic">Please Log in with your email address and password.</p>
                   <h1 class="alert"></h1>
-                </div>
+               </div>
                <form>
                   <div class="form-group">
                      <label for="InputEmail1">Email address</label>
                      <input type="email" class="form-control" id="InputEmail1">
                   </div>
                   <div class="form-group">
-                      <label for="InputPass1">Password</label>
-                      <input type="text" class="form-control" id="InputPass1">
-                   </div>
-                   <button type"signIn" id="signIn" class="btn submit-button"><i class="fas fa-check"></i> Sign In</button>
+                     <label for="InputPass1">Password</label>
+                     <input type="text" class="form-control" id="InputPass1">
+                  </div>
+                  <button type"signIn" id="signIn" class="btn submit-button"><i class="fas fa-check"></i> Sign In</button>
                </form>
             </div>
          </div>
@@ -90,11 +97,8 @@
          </footer>
       </div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
       <script src="assets/js/tmdb.js"></script>
       <script src="assets/js/omdb.js"></script> 
-      
       <script src="assets/js/script.js"></script>
-    
-</body>
+   </body>
 </html>
