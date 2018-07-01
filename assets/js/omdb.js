@@ -6,12 +6,12 @@ var recommended_movies = [];
 hide_all_posters();
 
 // Add our api_keys here
-var tom2_omdb_api_key = "a87ebc7c";
-var tom_omdb_api_key = "8506adc6";
-var tom3_omdb_api_key = "e81ddc9";
+var houssam_omdb_api_key = "e4169616";
+var tom_omdb_api_key = "d546d0cf";
+var jeff_omdb_api_key = "8b309cfb";
 
 // Create an array of our 3 keys. Cycle through them so we don't run out of requests.
-var omdb_api_keys = [tom2_omdb_api_key, tom_omdb_api_key, tom3_omdb_api_key];
+var omdb_api_keys = [houssam_omdb_api_key, tom_omdb_api_key, jeff_omdb_api_key];
 var current_omdb_api_key = 0;
 
 // This call for test purposes only. get_movie_list() should be called from front_end

@@ -19,6 +19,47 @@ var limit;
 
 ///////////////////////////////////////////////////////////////////////////////
 // 
+//************************************************ */
+//-------------SIGNIN/SIGNUP---------------------- */
+
+  console.log("signin")
+  $("#signUp").click(function() {
+    event.preventDefault();
+  
+  var userEmail = document.getElementById("InputEmail").value;
+  var userPass = document.getElementById("InputPass").value;
+  
+  firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+   
+    
+  });
+  
+  $("#InputEmail").val("");
+  $("#InputPass").val("");
+
+  });  
+  
+  
+  $("#signIn").click(function() {
+    event.preventDefault();
+  
+  var userEmail = document.getElementById("InputEmail1").value;
+  var userPass = document.getElementById("InputPass1").value;
+  
+    firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
+  
+  });
+  //----------------------END SIGNIN/SIGNUP------------------ */
+
 $( "#submit-button" ).click(function() {
     event.preventDefault();
 
@@ -36,6 +77,7 @@ $( "#submit-button" ).click(function() {
     genre_codes = "";
     if ($("#action").is(':checked') == true)         { genre_codes = append_genre_code(genre_codes, "#action"); }
     if ($("#adventure").is(':checked') == true)      { genre_codes = append_genre_code(genre_codes, "#adventure"); }
+    if ($("#animation").is(':checked') == true)      { genre_codes = append_genre_code(genre_codes, "#animation"); }
     if ($("#comedy").is(':checked') == true)         { genre_codes = append_genre_code(genre_codes, "#comedy"); }
     if ($("#crime").is(':checked') == true)          { genre_codes = append_genre_code(genre_codes, "#crime"); }
     if ($("#documentary").is(':checked') == true)    { genre_codes = append_genre_code(genre_codes, "#documentary"); }
@@ -49,6 +91,7 @@ $( "#submit-button" ).click(function() {
     if ($("#romance").is(':checked') == true)        { genre_codes = append_genre_code(genre_codes, "#romance"); }
     if ($("#sciencefiction").is(':checked') == true) { genre_codes = append_genre_code(genre_codes, "#sciencefiction"); }
     if ($("#thriller").is(':checked') == true)       { genre_codes = append_genre_code(genre_codes, "#thriller"); }
+    if ($("#tvmovie").is(':checked') == true)        { genre_codes = append_genre_code(genre_codes, "#tvmovie"); }
     if ($("#war").is(':checked') == true)            { genre_codes = append_genre_code(genre_codes, "#war"); }
     if ($("#western").is(':checked') == true)        { genre_codes = append_genre_code(genre_codes, "#western"); }
 
@@ -58,7 +101,7 @@ $( "#submit-button" ).click(function() {
     console.log("get_rec_movies(" 
                 + rtscore + ", "
                 + releaseyear + ", "
-                + genre_codes + ", "
+                + "'" + genre_codes + "', "
                 + limit + ")"
     );
     

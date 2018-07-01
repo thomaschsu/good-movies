@@ -17,7 +17,7 @@ var current_tmdb_api_key = 0;
 // To lookup a genre id, do this: var id = genres["Western"]
 // To cycle thru all genres, do this: for (genre in genres) {console.log(genre);}
 var genres = {};
-genres = get_genre_codes();
+get_genre_codes();
 console.log(genres);
 
 /*****************************************************************************/
@@ -27,8 +27,6 @@ console.log(genres);
 ///////////////////////////////////////////////////////////////////////
 // Gets list of genres, loads into local object and returns object
 function get_genre_codes() {
-    var genres_local = {};
-
     // Cycle round-robin through api keys
     current_tmdb_api_key = (current_tmdb_api_key + 1) % tmdb_api_keys.length;
 
@@ -41,19 +39,17 @@ function get_genre_codes() {
     // Ajax call to get list of genres from tmdb
     $.ajax({
         url: queryURL,
-        method: "GET",
-        async: false
+        method: "GET"
     }).then(function(response) {
         console.log(response);
         // Put each genre {name, id} in a local object
         for (var i=0; i<response.genres.length; ++i) {
             var name = response.genres[i].name.toLowerCase();
+            name = name.replace(/\s+/g, "");
             var id = response.genres[i].id;
-            genres_local[name] = id;
+            genres[name] = id;
         }
     });
-    // return the local array
-    return genres_local;
 }
 
 ///////////////////////////////////////////////////////////////////////

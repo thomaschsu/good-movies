@@ -6,7 +6,9 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-      <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+      <script src=https://www.gstatic.com/firebasejs/5.0.0/firebase-app.js></script> 
+      <script src=https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js></script> 
+      <script src=https://www.gstatic.com/firebasejs/5.0.0/firebase-database.js></script> 
     </head>
    <body>
       <nav class="navbar sticky-top navbar-expand-lg navbar-light">
@@ -55,7 +57,7 @@
                      <label for="InputPass">Password</label>
                      <input type="text" class="form-control" id="InputPass">
                   </div>
-                  <button onclick="signUp()" id="signUp" class="btn submit-button"><i class="fas fa-check"></i> Sign Up</button>
+                  <button type="signUp" id="signUp" class="btn submit-button"><i class="fas fa-check"></i> Sign Up</button>
                </form>
             </div>
             <div id="main-container-2" class="container bg-light border mt-5 pb-3">
@@ -66,7 +68,8 @@
                </div>
                <div class="col-md-12">
                   <p class="font-italic">Please Log in with your email address and password.</p>
-               </div>
+                  <h1 class="alert"></h1>
+                </div>
                <form>
                   <div class="form-group">
                      <label for="InputEmail1">Email address</label>
@@ -76,7 +79,7 @@
                       <label for="InputPass1">Password</label>
                       <input type="text" class="form-control" id="InputPass1">
                    </div>
-                   <button onclick="login()" id="signIn" class="btn submit-button"><i class="fas fa-check"></i> Sign In</button>
+                   <button type"signIn" id="signIn" class="btn submit-button"><i class="fas fa-check"></i> Sign In</button>
                </form>
             </div>
          </div>
@@ -87,22 +90,11 @@
          </footer>
       </div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <!-- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
       <script src="assets/js/tmdb.js"></script>
-      <script src="assets/js/omdb.js"></script>
-      <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyCnBB7K1x-2rGzwngazfbBY4K7vCfjQuzE",
-        authDomain: "group-5-project-1.firebaseapp.com",
-        databaseURL: "https://group-5-project-1.firebaseio.com",
-        projectId: "group-5-project-1",
-        storageBucket: "group-5-project-1.appspot.com",
-        messagingSenderId: "522365895035"
-      };
-        firebase.initializeApp(config);
-      </script>
+      <script src="assets/js/omdb.js"></script> 
+      
       <script src="assets/js/script.js"></script>
-      <script src="assets/js/emailsignin.js"></script>
+    
 </body>
 </html>
