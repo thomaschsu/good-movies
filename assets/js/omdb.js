@@ -64,6 +64,7 @@ function get_rec_movies(rotten_tomato_min_value, genre, year, limit) {
                             recommended_movies.push(response);
                             console.log(response);
                             console.log(recommended_movies);
+                            console.log(recommended_movies[0].Title + " trailer");
                             render_movie_poster(response, recommended_movies.length);  // Add movie to recommended movies view
                         } else {
                             // console.log("Rating " + rating + "% less than " + rotten_tomato_min_value + "%: NO PUSH");
