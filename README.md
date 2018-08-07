@@ -13,7 +13,7 @@ Group project created with two other members. Goodmovies is a website dedicated 
 ![Image 2](/images/image02.gif)
 
 ##### Favorites Page
-![Image 3](/images/image03.jpg)
+![Image 3](/images/image03.gif)
 
 - - -
 
