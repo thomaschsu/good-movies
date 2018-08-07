@@ -1,10 +1,10 @@
-# GoodMovies - Movie Filtering Website
+# Goodmovies - Movie Filtering Website
 
 ### Description
-Group project created with two other members. GoodMovies is a website dedicated to finding good movies for you to watch. The website uses OMDB API and The MovieDB API to populate the page of movies that will interest you based on what you decide to filter.
+Group project created with two other members. Goodmovies is a website dedicated to finding good movies for you to watch. This website uses OMDB API and The MovieDB API to populate the recommendations page with movies that will interest you based on the options you select.
 
 - - -
-### Screenshots
+### Demo
 
 ##### Main Page
 ![Image 1](/images/image01.gif)
