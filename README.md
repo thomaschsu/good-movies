@@ -6,7 +6,7 @@ Group project created with two other members. GoodMovies is a website dedicated 
 - - -
 ### Screenshots
 
-##### Main Page
+##### Main Page (Video File)
 ![Image 1](/images/image01.jpg)
 
 ##### Recommendations Page
