@@ -35,7 +35,7 @@ function get_rec_movies(rotten_tomato_min_value, genre, year, limit) {
         // Cycle round-robin through api_keys
         current_omdb_api_key = (current_omdb_api_key + 1) % omdb_api_keys.length;
 
-        var queryURL = "http://www.omdbapi.com/"
+        var queryURL = "https://www.omdbapi.com/"
                         + "?apikey=" + omdb_api_keys[current_omdb_api_key]
                         + "&t=" + all_movies[m].title
                         + "&y=" + year;
